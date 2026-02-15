@@ -20,7 +20,9 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd ~/todo-api-production
+            git reset --hard origin/main
             git pull origin main
-            docker compose down
+            export DOCKER_BUILDKIT=0
+            export COMPOSE_DOCKER_CLI_BUILD=0
             docker compose build
             docker compose up -d
