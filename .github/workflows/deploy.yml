@@ -21,6 +21,7 @@ jobs:
           script: |
             cd ~/todo-api-production
             git reset --hard origin/main
+            if [ -f "dockerfile" ]; then mv dockerfile Dockerfile; fi
             git pull origin main
             export DOCKER_BUILDKIT=0
             export COMPOSE_DOCKER_CLI_BUILD=0
